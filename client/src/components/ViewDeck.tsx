@@ -55,7 +55,6 @@ const ViewDeck = () => {
       }),
     });
     const updateData = await updateRes.json().then((res) => res.deck);
-    console.log(updateData);
     if (updateRes.ok) {
       setDeck(updateData);
       setRenameInput(!renameInput);

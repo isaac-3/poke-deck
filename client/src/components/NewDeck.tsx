@@ -27,30 +27,28 @@ const NewDeck = () => {
     const foundPoke = pokemons.findIndex(
       (pokemon) => pokemon.name === pokeSearch
     );
-    if (pokemons.length < 4 && foundPoke === -1) {
-      // const res = await fetch(
-      //   `https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`
-      // );
-      // if (res.ok) {
-      //   const data = await res.json();
-      //   const types = await data.types.map(
-      //     (type: object) =>
-      //       // @ts-ignore
-      //       type["type"]["name"]
-      //   );
+    if (pokemons.length < 7 && foundPoke === -1 && pokeSearch.trim().length) {
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokeSearch}/`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        const types = await data.types.map(
+          (type: object) =>
+            // @ts-ignore
+            type["type"]["name"]
+        );
         setPokemons([
           {
-            id: "oe",
-            name: "data.name",
-            // id: data.id,
-            // name: data.name,
-            // image: data.sprites.front_default,
-            // type: types,
+            id: data.id,
+            name: data.name,
+            image: data.sprites.front_default,
+            type: types,
           },
           ...pokemons,
         ]);
         setPokeSearch("");
-      // }
+      }
     }
   };
 

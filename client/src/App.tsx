@@ -5,6 +5,7 @@ import NewDeck from "./components/NewDeck";
 import Navbar from "./components/Navbar";
 import ViewDecks from "./components/ViewDecks";
 import ViewDeck from "./components/ViewDeck";
+import ViewCreaterDecks from "./components/ViewCreaterDecks";
 
 const App = () => {
   return (
@@ -15,6 +16,11 @@ const App = () => {
           <Route exact path="/" component={NewDeck} />
           <Route exact path="/decks" component={ViewDecks} />
           <Route exact path="/deck/:id" component={ViewDeck} />
+          <Route
+            exact
+            path="/creater/:createrName"
+            component={ViewCreaterDecks}
+          />
         </Switch>
       </Router>
     </div>

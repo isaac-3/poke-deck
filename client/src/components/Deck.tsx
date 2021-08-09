@@ -48,9 +48,11 @@ const Deck = ({ id, creater, editable, deckName }: Props) => {
   };
 
   return (
-    <div className="deck-card" onClick={() => history.push(`/deck/${id}`)}>
-      <h3>Creater: {creater}</h3>
-      <p>Deck Name: {deckName}</p>
+    <div className="deck-card">
+      <h3 onClick={() => history.push(`/creater/${creater}`)}>
+        Creater: {creater}
+      </h3>
+      <p onClick={() => history.push(`/deck/${id}`)}>Deck Name: {deckName}</p>
       <div className="deck-card-pokemon-container">
         {deckDetails.map((pokemon) => (
           <div
@@ -64,6 +66,11 @@ const Deck = ({ id, creater, editable, deckName }: Props) => {
             )}
           </div>
         ))}
+        {editable && deckDetails.length < 7 && (
+          <div className="deck-card-pokemon">
+            {7 - deckDetails.length} slots available
+          </div>
+        )}
       </div>
     </div>
   );

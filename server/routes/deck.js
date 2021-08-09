@@ -11,6 +11,15 @@ router.get("/all-decks", async (req, res) => {
   return res.status(200).json({ ok: true, decks });
 });
 
+router.get("/creater-decks/:name", async (req, res) => {
+  const { name } = req.params;
+  const decks = await Deck.find({ creater: name }).catch((err) => {
+    return res.status(404).json({ ok: false, message: err.message });
+  });
+
+  return res.status(200).json({ ok: true, decks });
+});
+
 router.get("/decks/:id", async (req, res) => {
   const { id } = req.params;
   const deck = await Deck.findById(id).catch((err) => {
